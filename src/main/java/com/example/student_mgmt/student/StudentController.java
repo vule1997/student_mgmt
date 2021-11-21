@@ -1,6 +1,7 @@
 package com.example.student_mgmt.student;
 
 import lombok.AllArgsConstructor;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,8 +32,9 @@ public class StudentController {
     }
 
     @GetMapping(path = "students")
-    public List<Student> give() {
-        return studentService.give();
+    public String give(Model model) {
+        model.addAttribute("students", studentService.give());
+        return "students";
     }
 
 }
